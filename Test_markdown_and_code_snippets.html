@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <title>Markdown and Code Template</title>
+</head>
+<body>
+<a href="https://rustyrat21.github.io/Test_Out_HMTL/index.html">Home Page</a>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Markdown Content</h2>
+      <div id="markdown-content">
+        <!-- Your Markdown content goes here -->
+        # Heading 1
+        ## Heading 2
+
+        *Italic Text*
+
+        **Bold Text**
+
+        [Link](https://www.example.com)
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2>Code Snippet</h2>
+      <pre><code id="code-content">
+        // Your code goes here
+        function helloWorld() {
+          console.log('Hello, World!');
+        }
+      </code></pre>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script>
+  // Render Markdown
+  const markdownContent = document.getElementById('markdown-content');
+  markdownContent.innerHTML = marked(markdownContent.innerHTML);
+
+  // Syntax Highlighting for Code
+  const codeContent = document.getElementById('code-content');
+  hljs.highlightBlock(codeContent);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/highlight.js"></script>
+</body>
+</html>
