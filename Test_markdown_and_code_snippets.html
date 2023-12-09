@@ -7,33 +7,105 @@
   <title>Markdown and Code Template</title>
 </head>
 <body>
-<a href="https://rustyrat21.github.io/Test_Out_HMTL/index.html">Home Page</a>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="https://rustyrat21.github.io/Test_Out_HMTL/Test_page2.html">Test Page 2</a></li>
+                  <li><a class="dropdown-item" href="https://rustyrat21.github.io/Test_Out_HMTL/Test_markdown_and_code_snippets.html">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-6">
       <h2>Markdown Content</h2>
       <div id="markdown-content">
         <!-- Your Markdown content goes here -->
-        # Heading 1
-        ## Heading 2
-
-        *Italic Text*
-
-        **Bold Text**
-
-        [Link](https://www.example.com)
+        # Get all apps installed on a workstations or server
+        To pull a list of installed applications that are not installed by default on a Windows system using PowerShell, you can utilize the Windows Management Instrumentation (WMI) and filter out the default applications. Here's a PowerShell script to accomplish this:
       </div>
     </div>
     <div class="col-md-6">
       <h2>Code Snippet</h2>
       <pre><code id="code-content">
-        // Your code goes here
-        function helloWorld() {
-          console.log('Hello, World!');
-        }
+        # Define an array of default application names
+$DefaultApps = @(
+    "Microsoft Office",
+    "Microsoft Visual C++",
+    "Microsoft Silverlight",
+    "Microsoft .NET Framework",
+    "Microsoft Visual Studio",
+    "Adobe Acrobat",
+    "Java",
+    "Google Chrome",
+    "Mozilla Firefox",
+    "Microsoft SQL Server",
+    "Microsoft Teams",
+    "Microsoft OneDrive",
+    "Microsoft Edge",
+    "Windows Live",
+    "Windows SDK",
+    "Microsoft Office Click-to-Run",
+    "Microsoft Office Suite"
+)
+
+# Get a list of installed applications
+$InstalledApps = Get-WmiObject -Query "SELECT * FROM Win32_Product" | Select-Object -Property Name
+
+# Filter out default applications
+$CustomApps = $InstalledApps | Where-Object { $DefaultApps -notcontains $_.Name }
+
+# Display the list of custom applications
+$CustomApps | Format-Table -AutoSize
+
       </code></pre>
     </div>
-  </div>
+    <div class="col-md-6">
+        <h2>Markdown Content</h2>
+        <div id="markdown-content">
+            In this script:
+
+            1. We define an array `$DefaultApps` containing the names of default applications. You can customize this list with additional default application names if needed.
+            
+            2. We use the `Get-WmiObject` cmdlet to retrieve a list of installed applications via WMI. We specifically query the `Win32_Product` class.
+            
+            3. We filter the installed applications to exclude those with names found in the `$DefaultApps` array, leaving only custom applications.
+            
+            4. Finally, we display the list of custom applications using `Format-Table`.
+            
+            Please note that querying the `Win32_Product` class can be relatively slow and resource-intensive. It may take some time to gather the list of installed applications. Additionally, you should run this script with appropriate permissions, as querying installed applications requires administrative access.
+
+        </div>
+    </div>
+</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
